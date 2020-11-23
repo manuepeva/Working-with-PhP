@@ -14,6 +14,9 @@ router.post('/',
     ],
     usuarioController.crearUsuario
 );
+router.get('/test', (req, res) => {
+    res.send('Server is Up and Running!');
+})
 
 
 module.exports = router;

@@ -8,6 +8,12 @@ const app = express();
 // Conectar a la base de datos
 conectDB();
 
+// Configurar cors
+var corsOptions = {
+    origin: 'http://example.com',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  }
+
 // Habilitar CORS
 app.use(cors());
 
@@ -18,13 +24,13 @@ app.use(express.json({ extend: true }));
 const PORT = process.env.PORT || 2400;
 
 // Importar rutas
-app.use('/api/usuarios', require('./Routes/usuarios'));
+app.use('/api/usuarios', cors(), require('./Routes/usuarios'));
 
-app.use('/api/auth', require('./Routes/auth'));
+app.use('/api/auth', cors(), require('./Routes/auth'));
 
-app.use('/api/proyectos', require('./Routes/proyectos'));
+app.use('/api/proyectos', cors(), require('./Routes/proyectos'));
 
-app.use('/api/tareas', require('./Routes/tareas'));
+app.use('/api/tareas', cors(), require('./Routes/Tareas'));
 
 
 app.listen(PORT, () => {
